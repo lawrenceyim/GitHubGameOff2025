@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvgioog4twdwd"]
+
+[ext_resource type="Script" uid="uid://cqveida67m33f" path="res://Scripts/Player.cs" id="1_ylxkg"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+script = ExtResource("1_ylxkg")
