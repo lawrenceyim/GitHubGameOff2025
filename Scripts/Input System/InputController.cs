@@ -4,8 +4,6 @@ using Godot;
 namespace InputSystem {
     public partial class InputController : Node, IAutoload {
         public event Action<InputEventDto> InputFromPlayer;
-        private bool _cameraIs2D = true;
-        private bool _cameraInScene = false;
 
         public override void _Input(InputEvent @event) {
             switch (@event) {
