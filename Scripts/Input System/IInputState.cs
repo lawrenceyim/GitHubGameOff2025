@@ -1,5 +1,5 @@
 namespace InputSystem {
-    public interface InputState {
+    public interface IInputState {
         public void ProcessInput(InputEventDto dto);
     }
 }

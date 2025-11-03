@@ -2,7 +2,7 @@ using Godot;
 
 namespace InputSystem {
     public partial class InputStateMachine : Node {
-        private InputState _state;
+        private IInputState _state;
         private InputController _controller;
 
         public override void _Ready() {
@@ -11,7 +11,7 @@ namespace InputSystem {
             _controller.InputFromPlayer += ProcessInput;
         }
 
-        public void SetState(InputState state) {
+        public void SetState(IInputState state) {
             _state = state;
         }
 

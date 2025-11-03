@@ -2,35 +2,44 @@ using System;
 using Godot;
 
 namespace InputSystem {
-	public partial class InputController : Node {
-		public event Action<InputEventDto> InputFromPlayer;
+    public partial class InputController : Node, IAutoload {
+        public event Action<InputEventDto> InputFromPlayer;
+        private bool _cameraIs2D = true;
+        private bool _cameraInScene = false;
 
-		public override void _Input(InputEvent @event) {
-			switch (@event) {
-				case InputEventKey eventKey:
-					if (eventKey.Echo) {
-						return;
-					}
+        public override void _Input(InputEvent @event) {
+            switch (@event) {
+                case InputEventKey key:
+                    if (key.Echo) {
+                        return;
+                    }
 
-					InputFromPlayer?.Invoke(new KeyEventDto(
-						OS.GetKeycodeString(eventKey.PhysicalKeycode),
-						eventKey.Pressed
-					));
-					break;
-				case InputEventMouseButton eventMouseButton:
-					InputFromPlayer?.Invoke(new MouseEventDto(
-						eventMouseButton.ButtonIndex.ToString(),
-						eventMouseButton.Pressed,
-						GetViewport().GetCamera2D().GetGlobalMousePosition()
-					));
-					break;
-				case InputEventMouseMotion:
-					break;
-				case InputEventJoypadButton:
-					break;
-				case InputEventJoypadMotion:
-					break;
-			}
-		}
-	}
+                    // GD.Print($"InputController KeyEventDTO");
+                    InputFromPlayer?.Invoke(new KeyDto(
+                        OS.GetKeycodeString(key.PhysicalKeycode),
+                        key.Pressed
+                    ));
+                    break;
+                case InputEventMouseButton mouseButton:
+                    // GD.Print($"InputController MouseButton");
+                    InputFromPlayer?.Invoke(new MouseButtonDto(
+                        mouseButton.ButtonIndex.ToString(),
+                        mouseButton.Pressed,
+                        GetWindow().GetMousePosition()
+                    ));
+                    break;
+                case InputEventMouseMotion mouseMotion:
+                    // GD.Print($"InputController MouseMotion");
+                    InputFromPlayer?.Invoke(new MouseMotionDto(
+                        mouseMotion.Position,
+                        mouseMotion.Relative
+                    ));
+                    break;
+                case InputEventJoypadButton:
+                    break;
+                case InputEventJoypadMotion:
+                    break;
+            }
+        }
+    }
 }

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://yry8cxffkri4"]
+
+[ext_resource type="Script" uid="uid://q8ed1kloyuuj" path="res://Scripts/Levels/MainLevel.cs" id="1_if62t"]
+[ext_resource type="PackedScene" uid="uid://bvgioog4twdwd" path="res://Scenes/Game Object/Player.tscn" id="2_phujf"]
+
+[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player")]
+script = ExtResource("1_if62t")
+_player = NodePath("Player")
+_leftXBound = 100.0
+_rightXBound = 1000.0
+
+[node name="Player" parent="." instance=ExtResource("2_phujf")]
+position = Vector2(200, 0)
