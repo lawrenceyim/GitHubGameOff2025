@@ -14,6 +14,10 @@ config/name="GitHub GameOff 2025"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://Assets/Sprites/icon.svg"
 
+[autoload]
+
+ServiceLocator="*res://Scripts/Service Locator/ServiceLocator.cs"
+
 [dotnet]
 
 project/assembly_name="New Game Project"
