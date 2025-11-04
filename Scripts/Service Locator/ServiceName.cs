@@ -1,4 +1,4 @@
-namespace ServiceLocatorSystem;
+namespace ServiceSystem;
 
 public enum ServiceName {
     InputStateMachine = 0,

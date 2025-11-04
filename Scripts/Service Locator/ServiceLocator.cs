@@ -1,32 +1,33 @@
 using System.Collections.Generic;
-using EventSystem;
 using Godot;
 using InputSystem;
+using RepositorySystem;
 
-namespace ServiceLocatorSystem {
-	public partial class ServiceLocator : Node, IAutoload {
-		Dictionary<ServiceName, object> _services = new Dictionary<ServiceName, object>();
+namespace ServiceSystem;
 
-		public override void _EnterTree() {
-			_InstantiateServices();
-		}
+public partial class ServiceLocator : Node, IAutoload {
+    private RepositoryLocator _repositoryLocator = new RepositoryLocator();
+    private Dictionary<ServiceName, object> _services = new Dictionary<ServiceName, object>();
 
-		public void AddService(ServiceName serviceName, object service) {
-			_services.Add(serviceName, service);
-		}
+    public override void _EnterTree() {
+        _InstantiateServices();
+    }
 
-		public void RemoveService(ServiceName serviceName) {
-			_services.Remove(serviceName);
-		}
+    public void AddService(ServiceName serviceName, object service) {
+        _services.Add(serviceName, service);
+    }
 
-		public T GetService<T>(ServiceName serviceName) {
-			return (T)_services[serviceName];
-		}
+    public void RemoveService(ServiceName serviceName) {
+        _services.Remove(serviceName);
+    }
 
-		private void _InstantiateServices() {
-			InputStateMachine inputStateMachine = new();
-			_services[ServiceName.InputStateMachine] = inputStateMachine;
-			AddChild(inputStateMachine);
-		}
-	}
+    public T GetService<T>(ServiceName serviceName) {
+        return (T)_services[serviceName];
+    }
+
+    private void _InstantiateServices() {
+        InputStateMachine inputStateMachine = new();
+        _services[ServiceName.InputStateMachine] = inputStateMachine;
+        AddChild(inputStateMachine);
+    }
 }

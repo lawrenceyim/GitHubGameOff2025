@@ -1,6 +1,6 @@
 using EventSystem;
 using Godot;
-using ServiceLocatorSystem;
+using ServiceSystem;
 
 public partial class Player : AnimatedSprite2D {
 	[Export]

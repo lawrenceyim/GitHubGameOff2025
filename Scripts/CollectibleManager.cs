@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using ServiceLocatorSystem;
+using ServiceSystem;
 
 public partial class CollectibleManager : Node {
 	[Export]

@@ -13,4 +13,7 @@
     <Content Include="Scripts\Input System\InputType.cs.uid" />
     <Content Include="Scripts\Utils\JsonUtils.cs.uid" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\Service Locator\ServiceImpl\" />
+  </ItemGroup>
 </Project>

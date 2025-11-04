@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using InputSystem;
-using ServiceLocatorSystem;
+using ServiceSystem;
 
 public partial class MainLevel : Node2D, IInputState {
 	[Export]
