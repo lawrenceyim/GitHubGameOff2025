@@ -3,7 +3,7 @@ using Godot.Collections;
 
 namespace RepositorySystem;
 
-public partial class PackedSceneRepository : Node, IAutoload, IRepository {
+public partial class PackedSceneRepository : Node, IRepository {
     // Probably not the best way.
     // Figure out a way to make this an export
     private Dictionary<PackedSceneId, PackedScene> _packedScenes = new() {

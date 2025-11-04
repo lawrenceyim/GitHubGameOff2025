@@ -2,7 +2,7 @@ using System;
 using Godot;
 
 namespace InputSystem {
-    public partial class InputController : Node, IAutoload {
+    public partial class InputController : Node {
         public event Action<InputEventDto> InputFromPlayer;
 
         public override void _Input(InputEvent @event) {

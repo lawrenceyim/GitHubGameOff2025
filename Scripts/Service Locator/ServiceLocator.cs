@@ -6,8 +6,9 @@ using RepositorySystem;
 namespace ServiceSystem;
 
 public partial class ServiceLocator : Node, IAutoload {
-    private RepositoryLocator _repositoryLocator = new RepositoryLocator();
-    private Dictionary<ServiceName, object> _services = new Dictionary<ServiceName, object>();
+    public static string AutoloadPath => "/root/ServiceLocator";
+    private readonly RepositoryLocator _repositoryLocator = new RepositoryLocator();
+    private readonly Dictionary<ServiceName, object> _services = new Dictionary<ServiceName, object>();
 
     public override void _EnterTree() {
         _InstantiateServices();
@@ -26,8 +27,14 @@ public partial class ServiceLocator : Node, IAutoload {
     }
 
     private void _InstantiateServices() {
+        _services[ServiceName.RepositoryLocator] = _repositoryLocator;
+
         InputStateMachine inputStateMachine = new();
         _services[ServiceName.InputStateMachine] = inputStateMachine;
         AddChild(inputStateMachine);
+        
+        CollectibleManager collectibleManager = new();
+        _services[ServiceName.CollectibleManager] = collectibleManager;
+        AddChild(collectibleManager);
     }
 }

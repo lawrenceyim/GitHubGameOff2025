@@ -1,19 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://yry8cxffkri4"]
+[gd_scene load_steps=3 format=3 uid="uid://yry8cxffkri4"]
 
 [ext_resource type="Script" uid="uid://q8ed1kloyuuj" path="res://Scripts/Levels/MainLevel.cs" id="1_if62t"]
 [ext_resource type="PackedScene" uid="uid://bvgioog4twdwd" path="res://Scenes/Game Object/Player.tscn" id="2_phujf"]
-[ext_resource type="PackedScene" uid="uid://cgjqlrqhnxuv1" path="res://Scenes/Game Object/Collectible Manager.tscn" id="3_jurmy"]
 
-[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_collectibleManager")]
+[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player")]
 script = ExtResource("1_if62t")
 _player = NodePath("Player")
 _rightXBound = 1280
-_collectibleManager = NodePath("Collectible Manager")
 
 [node name="Player" parent="." instance=ExtResource("2_phujf")]
 position = Vector2(323, 546)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
-
-[node name="Collectible Manager" parent="." instance=ExtResource("3_jurmy")]
