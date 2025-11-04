@@ -1,12 +1,12 @@
+using System;
 using EvenetSystem;
 
 namespace EventSystem {
     public record ExampleGameEvent : GameEvent {
-        public GameEventId Id { get; }
+        public GameEventId Id { get; } =  GameEventId.ExampleEventId;
         public string Message { get; }
 
-        public ExampleGameEvent(GameEventId id, string message) {
-            Id = id;
+        public ExampleGameEvent(string message) {
             Message = message;
         }
     }

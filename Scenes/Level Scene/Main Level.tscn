@@ -7,8 +7,8 @@
 [node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_collectibleManager")]
 script = ExtResource("1_if62t")
 _player = NodePath("Player")
-_collectibleManager = NodePath("Collectible Manager")
 _rightXBound = 1280
+_collectibleManager = NodePath("Collectible Manager")
 
 [node name="Player" parent="." instance=ExtResource("2_phujf")]
 position = Vector2(323, 546)

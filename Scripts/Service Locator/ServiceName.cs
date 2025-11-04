@@ -1,5 +1,8 @@
 namespace ServiceLocatorSystem;
 
 public enum ServiceName {
-    InputStateMachine = 0
+    InputStateMachine = 0,
+    EventManager = 1,
+    CollectibleManager = 2,
+    PackedSceneRepository = 3,
 }

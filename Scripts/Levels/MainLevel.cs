@@ -8,9 +8,6 @@ public partial class MainLevel : Node2D, IInputState {
 	private AnimatedSprite2D _player;
 
 	[Export]
-	private CollectibleManager _collectibleManager;
-
-	[Export]
 	private int _leftXBound;
 
 	[Export]
@@ -18,6 +15,8 @@ public partial class MainLevel : Node2D, IInputState {
 
 	[Export]
 	private int _ySpawnPosition;
+
+	[Export] private CollectibleManager _collectibleManager;
 
 	private float _horizontalMoveSpeed = 10; // Per physic tick
 	private const string _moveLeft = "A";
@@ -30,16 +29,22 @@ public partial class MainLevel : Node2D, IInputState {
 	};
 
 	public override void _Ready() {
-		_serviceLocator = GetNode("/root/ServiceLocator") as ServiceLocator;
-		InputStateMachine inputStateMachine = _serviceLocator?.GetService(ServiceName.InputStateMachine) as InputStateMachine;
-		inputStateMachine?.SetState(this);
+		InstantiateLevel();
+	}
 
-		_collectibleManager.Initialize(_leftXBound, _rightXBound, _ySpawnPosition);
+	public void InstantiateLevel() {
+		ServiceLocator serviceLocator = GetNode<ServiceLocator>("/root/ServiceLocator");
+		InputStateMachine inputStateMachine = _serviceLocator?.GetService<InputStateMachine>(ServiceName.InputStateMachine);
+		inputStateMachine?.SetState(this);
+		
+		GD.Print($"Is service locator null {serviceLocator == null}. Is InputStateMachine null {inputStateMachine == null}");
+		_collectibleManager?.Initialize(_leftXBound, _rightXBound, _ySpawnPosition);
 	}
 
 	public void ProcessInput(InputEventDto dto) {
 		if (dto is KeyDto keyEventDto) {
 			_keyPressed[keyEventDto.Identifier] = keyEventDto.Pressed;
+			GD.Print("Key pressed: " + keyEventDto.Pressed);
 		}
 	}
 

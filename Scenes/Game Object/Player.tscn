@@ -21,9 +21,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hajwg"]
 size = Vector2(130, 130)
 
-[node name="Player" type="AnimatedSprite2D"]
+[node name="Player" type="AnimatedSprite2D" node_paths=PackedStringArray("_hitbox")]
 sprite_frames = SubResource("SpriteFrames_ore8i")
 script = ExtResource("1_ylxkg")
+_hitbox = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 

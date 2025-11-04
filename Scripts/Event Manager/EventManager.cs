@@ -1,14 +1,23 @@
+using System;
 using System.Collections.Generic;
 using EvenetSystem;
 
 namespace EventSystem {
     public class EventManager {
-        private Dictionary<GameEventId, EventProcessor> _events = new Dictionary<GameEventId, EventProcessor>() {
-            { GameEventId.ExampleEventId, new ExampleEventProcessor() },
-        };
+        public event Func<GameEvent> GameEventReceived;
+        
+        private Dictionary<GameEventId, EventProcessor> _events = new Dictionary<GameEventId, EventProcessor>() { };
+
+        public void AddProcessor(GameEventId gameEventId, EventProcessor eventProcessor) {
+            _events[gameEventId] = eventProcessor;
+        }
 
         public void ProcessEvent(GameEvent gameEvent) {
             _events[gameEvent.Id].Process(gameEvent);
+        }
+
+        public void Initialize() {
+            AddProcessor(GameEventId.CollectShrimpId, new ShrimpCollectEventProcessor());
         }
     }
 }

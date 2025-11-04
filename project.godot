@@ -16,7 +16,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 
 [autoload]
 
-ServiceLocator="*res://Scripts/Service Locator/ServiceLocator.cs"
+ServiceLocator="*res://Scenes/Autoload/ServiceLocator.tscn"
 
 [display]
 
