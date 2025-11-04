@@ -1,7 +1,8 @@
 using Godot;
+using ServiceSystem;
 
 namespace InputSystem {
-    public partial class InputStateMachine : Node {
+    public partial class InputStateMachine : Node, IService {
         private IInputState _state;
         private InputController _controller;
 

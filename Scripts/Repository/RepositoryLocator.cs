@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using ServiceSystem;
 
 namespace RepositorySystem;
 
-public class RepositoryLocator {
+public class RepositoryLocator : IService {
     private Dictionary<RepositoryName, IRepository> _repositories = new() {
         { RepositoryName.PackedSceneRepository, new PackedSceneRepository() },
         { RepositoryName.ShrimpRepository, new ShrimpRepository() }

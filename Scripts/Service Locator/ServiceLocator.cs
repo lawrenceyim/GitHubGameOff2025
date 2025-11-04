@@ -14,8 +14,11 @@ public partial class ServiceLocator : Node, IAutoload {
         _InstantiateServices();
     }
 
-    public void AddService(ServiceName serviceName, object service) {
-        _services.Add(serviceName, service);
+    public void AddService(ServiceName serviceName, IService service, bool addChild) {
+        _services[serviceName] = service;
+        if (addChild) {
+            AddChild(service as Node);
+        }
     }
 
     public void RemoveService(ServiceName serviceName) {
@@ -27,14 +30,8 @@ public partial class ServiceLocator : Node, IAutoload {
     }
 
     private void _InstantiateServices() {
-        _services[ServiceName.RepositoryLocator] = _repositoryLocator;
-
-        InputStateMachine inputStateMachine = new();
-        _services[ServiceName.InputStateMachine] = inputStateMachine;
-        AddChild(inputStateMachine);
-        
-        CollectibleManager collectibleManager = new();
-        _services[ServiceName.CollectibleManager] = collectibleManager;
-        AddChild(collectibleManager);
+        AddService(ServiceName.RepositoryLocator, _repositoryLocator, false);
+        AddService(ServiceName.InputStateMachine, new InputStateMachine(), true);
+        AddService(ServiceName.CollectibleManager, new CollectibleManager(), true);
     }
 }
