@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgjqlrqhnxuv1"]
+
+[ext_resource type="Script" uid="uid://tcarvh5jmxdx" path="res://Scripts/CollectibleManager.cs" id="1_572ls"]
+[ext_resource type="PackedScene" uid="uid://dkivshgpmfqtv" path="res://Scenes/Game Object/Shrimp.tscn" id="2_qfwr1"]
+
+[node name="Collectible Manager" type="Node"]
+script = ExtResource("1_572ls")
+_shrimp = ExtResource("2_qfwr1")

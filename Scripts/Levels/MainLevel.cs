@@ -8,15 +8,22 @@ public partial class MainLevel : Node2D, IInputState {
 	private AnimatedSprite2D _player;
 
 	[Export]
-	private float _leftXBound;
+	private CollectibleManager _collectibleManager;
 
 	[Export]
-	private float _rightXBound;
+	private int _leftXBound;
+
+	[Export]
+	private int _rightXBound;
+
+	[Export]
+	private int _ySpawnPosition;
 
 	private float _horizontalMoveSpeed = 10; // Per physic tick
 	private const string _moveLeft = "A";
 	private const string _moveRight = "D";
 	private ServiceLocator _serviceLocator;
+
 	private Dictionary<string, bool> _keyPressed = new() {
 		{ _moveLeft, false },
 		{ _moveRight, false }
@@ -24,8 +31,10 @@ public partial class MainLevel : Node2D, IInputState {
 
 	public override void _Ready() {
 		_serviceLocator = GetNode("/root/ServiceLocator") as ServiceLocator;
-		InputStateMachine inputStateMachine = _serviceLocator?.GetService(ServiceName.InputStateMachine) as  InputStateMachine;
-		inputStateMachine?.SetState(this);        
+		InputStateMachine inputStateMachine = _serviceLocator?.GetService(ServiceName.InputStateMachine) as InputStateMachine;
+		inputStateMachine?.SetState(this);
+
+		_collectibleManager.Initialize(_leftXBound, _rightXBound, _ySpawnPosition);
 	}
 
 	public void ProcessInput(InputEventDto dto) {
