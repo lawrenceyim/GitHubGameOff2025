@@ -33,18 +33,16 @@ public partial class MainLevel : Node2D, IInputState {
 	}
 
 	public void InstantiateLevel() {
-		ServiceLocator serviceLocator = GetNode<ServiceLocator>("/root/ServiceLocator");
-		InputStateMachine inputStateMachine = _serviceLocator?.GetService<InputStateMachine>(ServiceName.InputStateMachine);
+		_serviceLocator = GetNode<ServiceLocator>("/root/ServiceLocator");
+		InputStateMachine inputStateMachine = _serviceLocator.GetService<InputStateMachine>(ServiceName.InputStateMachine);
 		inputStateMachine?.SetState(this);
 		
-		GD.Print($"Is service locator null {serviceLocator == null}. Is InputStateMachine null {inputStateMachine == null}");
 		_collectibleManager?.Initialize(_leftXBound, _rightXBound, _ySpawnPosition);
 	}
 
 	public void ProcessInput(InputEventDto dto) {
 		if (dto is KeyDto keyEventDto) {
 			_keyPressed[keyEventDto.Identifier] = keyEventDto.Pressed;
-			GD.Print("Key pressed: " + keyEventDto.Pressed);
 		}
 	}
 

@@ -24,8 +24,7 @@ namespace ServiceLocatorSystem {
 		}
 
 		private void _InstantiateServices() {
-			GD.Print("Instantiating services...");
-			InputStateMachine inputStateMachine = new InputStateMachine();
+			InputStateMachine inputStateMachine = new();
 			_services[ServiceName.InputStateMachine] = inputStateMachine;
 			AddChild(inputStateMachine);
 		}
