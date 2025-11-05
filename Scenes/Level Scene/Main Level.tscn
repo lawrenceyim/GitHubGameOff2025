@@ -17,7 +17,7 @@ _ySpawnPosition = 305
 _outOfBoundsArea = NodePath("Area2D - out of bounds")
 
 [node name="Player" parent="." instance=ExtResource("2_phujf")]
-position = Vector2(323, 546)
+position = Vector2(640, 568)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
