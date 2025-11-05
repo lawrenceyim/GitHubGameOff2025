@@ -17,14 +17,17 @@ public partial class CollectibleManager : Node, IService {
     private int _shrimpSpawnMinTickDelay = 20;
     private int _shrimpSpawnMaxTickDelay = 80;
     private int _shrimpSpawnTicksLeft = 0;
-    private int _shrimpMoveSpeed = 4;
+    private int _shrimpMoveSpeed = 1;
+    private float _shrimpTravelDistance;
 
-    public void Initialize(ShrimpRepository shrimpRepository, PackedScene shrimp, int leftXBound, int rightXBound, int ySpawnPosition) {
+    public void Initialize(ShrimpRepository shrimpRepository, PackedScene shrimp, int leftXBound,
+        int rightXBound, int ySpawnPosition, float playerYPosition) {
         _shrimpRepository = shrimpRepository;
         _shrimp = shrimp;
         _leftXBound = leftXBound;
         _rightXBound = rightXBound;
         _ySpawnPosition = ySpawnPosition;
+        _shrimpTravelDistance = playerYPosition - _ySpawnPosition;
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -41,6 +44,8 @@ public partial class CollectibleManager : Node, IService {
         Dictionary<ulong, Shrimp>.ValueCollection shrimps = _shrimpRepository.GetShrimps();
         foreach (Shrimp shrimp in shrimps) {
             shrimp.Position = new Vector2(shrimp.Position.X, shrimp.Position.Y + _shrimpMoveSpeed);
+            float scale = Math.Min((shrimp.Position.Y - _ySpawnPosition) / _shrimpTravelDistance, 1);
+            shrimp.Scale = new Vector2(scale, scale);
         }
     }
 

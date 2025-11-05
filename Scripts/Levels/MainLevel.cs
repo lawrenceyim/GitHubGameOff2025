@@ -65,7 +65,7 @@ public partial class MainLevel : Node2D, IInputState {
         PackedSceneRepository packedSceneRepository = repositoryLocator.GetRepository<PackedSceneRepository>(RepositoryName.PackedScene);
         PackedScene shrimpPackedScene = packedSceneRepository.GetPackedScene(PackedSceneId.Shrimp);
         _collectibleManager = _serviceLocator.GetService<CollectibleManager>(ServiceName.CollectibleManager);
-        _collectibleManager?.Initialize(shrimpRepository, shrimpPackedScene, _leftXBound, _rightXBound, _ySpawnPosition);
+        _collectibleManager?.Initialize(shrimpRepository, shrimpPackedScene, _leftXBound, _rightXBound, _ySpawnPosition, _player.Position.Y);
         
         _outOfBoundsArea.AreaEntered += DestroyOutOfBoundsObject;
     }

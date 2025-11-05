@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using EvenetSystem;
 
 namespace EventSystem {
+    /// <summary>
+    /// Refactor this to be between the UI/controller and the service layer
+    /// </summary>
     public class EventManager {
         public event Func<GameEvent> GameEventReceived;
         
