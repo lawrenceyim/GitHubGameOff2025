@@ -7,6 +7,7 @@
 size = Vector2(1332, 60)
 
 [node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_outOfBoundsArea")]
+y_sort_enabled = true
 script = ExtResource("1_if62t")
 _player = NodePath("Player")
 _rightXBound = 1280

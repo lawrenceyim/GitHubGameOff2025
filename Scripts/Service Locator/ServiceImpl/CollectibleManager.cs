@@ -4,7 +4,7 @@ using Godot;
 using RepositorySystem;
 using ServiceSystem;
 
-public partial class CollectibleManager : Node, IService {
+public partial class CollectibleManager : Node2D, IService {
     private PackedScene _shrimp;
     private ShrimpRepository _shrimpRepository;
     private int _leftXBound;
@@ -22,6 +22,7 @@ public partial class CollectibleManager : Node, IService {
 
     public void Initialize(ShrimpRepository shrimpRepository, PackedScene shrimp, int leftXBound,
         int rightXBound, int ySpawnPosition, float playerYPosition) {
+        YSortEnabled = true;
         _shrimpRepository = shrimpRepository;
         _shrimp = shrimp;
         _leftXBound = leftXBound;
@@ -59,6 +60,7 @@ public partial class CollectibleManager : Node, IService {
         _shrimpSpawnTicksLeft = _random.Next(_shrimpSpawnMinTickDelay, _shrimpSpawnMaxTickDelay);
 
         Shrimp shrimp = (Shrimp)_shrimp.Instantiate();
+        shrimp.YSortEnabled = true;
         shrimp.Initialize(_collectibleId++);
         shrimp.Position = new Vector2(_random.Next(_leftXBound, _rightXBound), _ySpawnPosition);
         _shrimpRepository.AddShrimp(shrimp.Id(), shrimp);
