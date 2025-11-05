@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvgioog4twdwd"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Assets/Sprites/icon.svg" id="1_hajwg"]
+[ext_resource type="Texture2D" uid="uid://drgwgsoav4van" path="res://Assets/Sprites/placeholder_horse.webp" id="1_hajwg"]
 [ext_resource type="Script" uid="uid://cqveida67m33f" path="res://Scripts/Player.cs" id="1_ylxkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17rle"]
 atlas = ExtResource("1_hajwg")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 0, 132, 304)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ore8i"]
 animations = [{
@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hajwg"]
-size = Vector2(130, 130)
+size = Vector2(130, 212)
 
 [node name="Player" type="AnimatedSprite2D" node_paths=PackedStringArray("_hitbox")]
 sprite_frames = SubResource("SpriteFrames_ore8i")
@@ -29,4 +29,5 @@ _hitbox = NodePath("Area2D")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 43)
 shape = SubResource("RectangleShape2D_hajwg")
