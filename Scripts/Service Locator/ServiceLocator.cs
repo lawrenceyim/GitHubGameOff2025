@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Godot;
 using InputSystem;
 using RepositorySystem;
-using ServiceSystem.ServiceImpl;
 
 namespace ServiceSystem;
 
@@ -34,6 +33,6 @@ public partial class ServiceLocator : Node, IAutoload {
         AddService(ServiceName.RepositoryLocator, _repositoryLocator, false);
         AddService(ServiceName.InputStateMachine, new InputStateMachine(), true);
         AddService(ServiceName.CollectibleManager, new CollectibleManager(), true);
-        AddService(ServiceName.PlayerData, new PlayerDataService(), false);
+        AddService(ServiceName.PlayerData, new PlayerDataService(_repositoryLocator.GetRepository<PlayerDataRepository>(RepositoryName.PlayerData)), false);
     }
 }

@@ -1,7 +1,5 @@
-using EventSystem;
 using Godot;
 using ServiceSystem;
-using ServiceSystem.ServiceImpl;
 
 public partial class Player : AnimatedSprite2D {
     [Export]
@@ -22,7 +20,9 @@ public partial class Player : AnimatedSprite2D {
     private void HandleCollision(Area2D area) {
         if (area.GetParent() is Shrimp shrimp) {
             // _playerDataService.
+            _playerDataService.AddShrimp(ShrimpType.Fresh, 1);
             _collectibleManager.DestroyShrimp(shrimp.Id());
+            GD.Print($"Fresh shrimp count: {_playerDataService.GetShrimp(ShrimpType.Fresh)}");
         }
     }
 }
