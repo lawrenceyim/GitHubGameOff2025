@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvgioog4twdwd"]
+[gd_scene load_steps=5 format=3 uid="uid://bvgioog4twdwd"]
 
 [ext_resource type="Texture2D" uid="uid://drgwgsoav4van" path="res://Assets/Sprites/placeholder_horse.webp" id="1_hajwg"]
-[ext_resource type="Script" uid="uid://cqveida67m33f" path="res://Scripts/Player.cs" id="1_ylxkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17rle"]
 atlas = ExtResource("1_hajwg")
@@ -21,10 +20,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hajwg"]
 size = Vector2(99, 185)
 
-[node name="Player" type="AnimatedSprite2D" node_paths=PackedStringArray("_hitbox")]
+[node name="Player" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_ore8i")
-script = ExtResource("1_ylxkg")
-_hitbox = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 

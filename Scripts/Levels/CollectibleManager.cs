@@ -4,7 +4,7 @@ using Godot;
 using RepositorySystem;
 using ServiceSystem;
 
-public partial class CollectibleManager : Node2D, IService, ITick {
+public partial class CollectibleManager : Node2D {
     private readonly Random _random = new();
 
     private GameClock _gameClock;

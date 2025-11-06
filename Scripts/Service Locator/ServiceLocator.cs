@@ -33,7 +33,6 @@ public partial class ServiceLocator : Node, IAutoload {
         AddService(ServiceName.GameClock, new GameClock(), true);
         AddService(ServiceName.RepositoryLocator, _repositoryLocator, false);
         AddService(ServiceName.InputStateMachine, new InputStateMachine(), true);
-        AddService(ServiceName.CollectibleManager, new CollectibleManager(), true);
         AddService(ServiceName.PlayerData, new PlayerDataService(_repositoryLocator.GetRepository<PlayerDataRepository>(RepositoryName.PlayerData)), false);
     }
 }

@@ -7,10 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phujf"]
 size = Vector2(1332, 60)
 
-[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_collectibleOutOfBoundsArea")]
+[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_playerHitBox", "_collectibleOutOfBoundsArea")]
 y_sort_enabled = true
 script = ExtResource("1_if62t")
 _player = NodePath("Player")
+_playerHitBox = NodePath("Player/Area2D")
 _collectibleLeftXBound = 380
 _collectibleRightXBound = 955
 _collectibleYSpawnPosition = 305
@@ -37,3 +38,5 @@ z_index = -10
 position = Vector2(640.00006, 360)
 scale = Vector2(1.1101476, 1.1093991)
 texture = ExtResource("3_jurmy")
+
+[editable path="Player"]
