@@ -25,9 +25,11 @@ public partial class MainLevel : Node2D, IInputState {
 
     [Export]
     private int _playerRightXBound;
+    
+    [Export]
+    private float _horizontalMoveSpeed; // Per physic tick
 
     private CollectibleManager _collectibleManager;
-    private float _horizontalMoveSpeed = 10; // Per physic tick
     private const string _moveLeft = "A";
     private const string _moveRight = "D";
     private ServiceLocator _serviceLocator;
@@ -56,9 +58,6 @@ public partial class MainLevel : Node2D, IInputState {
         base._PhysicsProcess(delta);
 
         MovePlayer();
-
-        // move horse left and right based on input
-        // move all obstacles, shrimps, and power ups down the screen
     }
 
     private void InstantiateLevel() {
