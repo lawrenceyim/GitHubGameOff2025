@@ -78,7 +78,7 @@ public partial class MainLevel : Node2D, IInputState {
 
     private void DestroyCollectible(Area2D area) {
         if (area.GetParent() is Shrimp shrimp) {
-            _collectibleManager.DestroyShrimp(shrimp.Id());
+            _collectibleManager.DestroyShrimp(shrimp.GetId());
         }
     }
 

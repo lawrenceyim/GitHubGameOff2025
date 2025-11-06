@@ -19,6 +19,8 @@ public partial class CollectibleManager : Node2D, IService {
     private int _shrimpSpawnTicksLeft = 0;
     private int _shrimpMoveSpeed = 1;
     private float _shrimpTravelDistance;
+    private int _minShrimpAmountInclusive = 1;
+    private int _maxShrimpAmountExclusive = 10;
 
     public void Initialize(ShrimpRepository shrimpRepository, PackedScene shrimp, int leftXBound,
         int rightXBound, int ySpawnPosition, float playerYPosition) {
@@ -61,9 +63,9 @@ public partial class CollectibleManager : Node2D, IService {
 
         Shrimp shrimp = (Shrimp)_shrimp.Instantiate();
         shrimp.YSortEnabled = true;
-        shrimp.Initialize(_collectibleId++);
+        shrimp.Initialize(_collectibleId++, _random.Next(_minShrimpAmountInclusive, _maxShrimpAmountExclusive));
         shrimp.Position = new Vector2(_random.Next(_leftXBound, _rightXBound), _ySpawnPosition);
-        _shrimpRepository.AddShrimp(shrimp.Id(), shrimp);
+        _shrimpRepository.AddShrimp(shrimp.GetId(), shrimp);
         AddChild(shrimp);
     }
 }
