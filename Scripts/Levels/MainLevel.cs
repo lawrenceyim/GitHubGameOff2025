@@ -9,16 +9,22 @@ public partial class MainLevel : Node2D, IInputState {
     private AnimatedSprite2D _player;
 
     [Export]
-    private int _leftXBound;
+    private int _collectibleLeftXBound;
 
     [Export]
-    private int _rightXBound;
+    private int _collectibleRightXBound;
 
     [Export]
-    private int _ySpawnPosition;
+    private int _collectibleYSpawnPosition;
 
     [Export]
-    private Area2D _outOfBoundsArea;
+    private Area2D _collectibleOutOfBoundsArea;
+
+    [Export]
+    private int _playerLeftXBound;
+
+    [Export]
+    private int _playerRightXBound;
 
     private CollectibleManager _collectibleManager;
     private float _horizontalMoveSpeed = 10; // Per physic tick
@@ -65,12 +71,13 @@ public partial class MainLevel : Node2D, IInputState {
         PackedSceneRepository packedSceneRepository = repositoryLocator.GetRepository<PackedSceneRepository>(RepositoryName.PackedScene);
         PackedScene shrimpPackedScene = packedSceneRepository.GetPackedScene(PackedSceneId.Shrimp);
         _collectibleManager = _serviceLocator.GetService<CollectibleManager>(ServiceName.CollectibleManager);
-        _collectibleManager?.Initialize(shrimpRepository, shrimpPackedScene, _leftXBound, _rightXBound, _ySpawnPosition, _player.Position.Y);
-        
-        _outOfBoundsArea.AreaEntered += DestroyOutOfBoundsObject;
+        _collectibleManager?.Initialize(shrimpRepository, shrimpPackedScene, _collectibleLeftXBound,
+            _collectibleRightXBound, _collectibleYSpawnPosition, _player.Position.Y);
+
+        _collectibleOutOfBoundsArea.AreaEntered += DestroyCollectible;
     }
 
-    private void DestroyOutOfBoundsObject(Area2D area) {
+    private void DestroyCollectible(Area2D area) {
         if (area.GetParent() is Shrimp shrimp) {
             _collectibleManager.DestroyShrimp(shrimp.Id());
         }
@@ -81,11 +88,11 @@ public partial class MainLevel : Node2D, IInputState {
         newPosition.X = (_keyPressed[_moveLeft] ? -1 : 0) + (_keyPressed[_moveRight] ? 1 : 0);
         newPosition *= _horizontalMoveSpeed;
         newPosition += _player.Position;
-        if (newPosition.X > _rightXBound) {
-            newPosition.X = _rightXBound;
+        if (newPosition.X > _playerRightXBound) {
+            newPosition.X = _playerRightXBound;
         }
-        else if (newPosition.X < _leftXBound) {
-            newPosition.X = _leftXBound;
+        else if (newPosition.X < _playerLeftXBound) {
+            newPosition.X = _playerLeftXBound;
         }
 
         _player.Position = newPosition;

@@ -7,14 +7,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phujf"]
 size = Vector2(1332, 60)
 
-[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_outOfBoundsArea")]
+[node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_collectibleOutOfBoundsArea")]
 y_sort_enabled = true
 script = ExtResource("1_if62t")
 _player = NodePath("Player")
-_leftXBound = 380
-_rightXBound = 955
-_ySpawnPosition = 305
-_outOfBoundsArea = NodePath("Area2D - out of bounds")
+_collectibleLeftXBound = 380
+_collectibleRightXBound = 955
+_collectibleYSpawnPosition = 305
+_collectibleOutOfBoundsArea = NodePath("Area2D - out of bounds")
+_playerLeftXBound = 70
+_playerRightXBound = 1200
 
 [node name="Player" parent="." instance=ExtResource("2_phujf")]
 position = Vector2(640, 568)
