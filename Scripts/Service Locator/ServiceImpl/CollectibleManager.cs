@@ -5,22 +5,21 @@ using RepositorySystem;
 using ServiceSystem;
 
 public partial class CollectibleManager : Node2D, IService {
+    private readonly Random _random = new();
+
     private PackedScene _shrimp;
     private ShrimpRepository _shrimpRepository;
+    private float _shrimpSpawnDistanceFromPlayer;
     private int _leftXBound;
     private int _rightXBound;
     private int _ySpawnPosition;
-
-    private ulong _collectibleId = 0;
-    private readonly Random _random = new();
-
     private int _shrimpSpawnMinTickDelay = 20;
     private int _shrimpSpawnMaxTickDelay = 80;
     private int _shrimpSpawnTicksLeft = 0;
     private int _shrimpMoveSpeed = 1;
-    private float _shrimpTravelDistance;
     private int _minShrimpAmountInclusive = 1;
     private int _maxShrimpAmountExclusive = 10;
+    private ulong _collectibleId = 0;
 
     public void Initialize(ShrimpRepository shrimpRepository, PackedScene shrimp, int leftXBound,
         int rightXBound, int ySpawnPosition, float playerYPosition) {
@@ -30,7 +29,7 @@ public partial class CollectibleManager : Node2D, IService {
         _leftXBound = leftXBound;
         _rightXBound = rightXBound;
         _ySpawnPosition = ySpawnPosition;
-        _shrimpTravelDistance = playerYPosition - _ySpawnPosition;
+        _shrimpSpawnDistanceFromPlayer = playerYPosition - _ySpawnPosition;
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -47,7 +46,7 @@ public partial class CollectibleManager : Node2D, IService {
         Dictionary<ulong, Shrimp>.ValueCollection shrimps = _shrimpRepository.GetShrimps();
         foreach (Shrimp shrimp in shrimps) {
             shrimp.Position = new Vector2(shrimp.Position.X, shrimp.Position.Y + _shrimpMoveSpeed);
-            float scale = Math.Min((shrimp.Position.Y - _ySpawnPosition) / _shrimpTravelDistance, 1);
+            float scale = Math.Min((shrimp.Position.Y - _ySpawnPosition) / _shrimpSpawnDistanceFromPlayer, 1);
             shrimp.Scale = new Vector2(scale, scale);
         }
     }
