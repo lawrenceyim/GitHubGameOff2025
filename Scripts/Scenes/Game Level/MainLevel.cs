@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Godot;
-using Godot.NativeInterop;
 using InputSystem;
 using RepositorySystem;
 using ServiceSystem;
@@ -83,7 +82,6 @@ public partial class MainLevel : Node2D, IInputState, ITick {
 		_playerDataService = _serviceLocator.GetService<PlayerDataService>(ServiceName.PlayerData);
 		_gameClock = _serviceLocator.GetService<GameClock>(ServiceName.GameClock);
 		RepositoryLocator repositoryLocator = _serviceLocator.GetService<RepositoryLocator>(ServiceName.RepositoryLocator);
-		ShrimpRepository shrimpRepository = repositoryLocator.GetRepository<ShrimpRepository>(RepositoryName.Shrimp);
 		PackedSceneRepository packedSceneRepository = repositoryLocator.GetRepository<PackedSceneRepository>(RepositoryName.PackedScene);
 		PackedScene shrimpPackedScene = packedSceneRepository.GetPackedScene(PackedSceneId.Shrimp);
 		InputStateMachine inputStateMachine = _serviceLocator.GetService<InputStateMachine>(ServiceName.InputStateMachine);
@@ -92,7 +90,7 @@ public partial class MainLevel : Node2D, IInputState, ITick {
 
 		_collectibleManager = new CollectibleManager();
 		AddChild(_collectibleManager);
-		_collectibleManager?.Initialize(shrimpRepository, shrimpPackedScene, _collectibleLeftXBound,
+		_collectibleManager?.Initialize(shrimpPackedScene, _collectibleLeftXBound,
 			_collectibleRightXBound, _collectibleYSpawnPosition, _player.Position.Y);
 		_gameClock.AddActiveScene(this, GetInstanceId());
 		_collectibleOutOfBoundsArea.AreaEntered += _DestroyCollectible;

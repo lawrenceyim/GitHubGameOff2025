@@ -6,7 +6,6 @@ namespace RepositorySystem;
 public class RepositoryLocator : IService {
     private Dictionary<RepositoryName, IRepository> _repositories = new() {
         { RepositoryName.PackedScene, new PackedSceneRepository() },
-        { RepositoryName.Shrimp, new ShrimpRepository() },
         { RepositoryName.PlayerData, new PlayerDataRepository() }
     };
 

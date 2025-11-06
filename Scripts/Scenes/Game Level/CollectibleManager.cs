@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using RepositorySystem;
-using ServiceSystem;
 
 public partial class CollectibleManager : Node2D {
     private readonly Random _random = new();
 
     private GameClock _gameClock;
     private PackedScene _shrimp;
-    private ShrimpRepository _shrimpRepository;
     private float _shrimpSpawnDistanceFromPlayer;
     private int _leftXBound;
     private int _rightXBound;
@@ -21,11 +18,10 @@ public partial class CollectibleManager : Node2D {
     private int _minShrimpAmountInclusive = 1;
     private int _maxShrimpAmountExclusive = 10;
     private ulong _collectibleId = 0;
+    private Dictionary<ulong, Shrimp> _shrimps = new Dictionary<ulong, Shrimp>();
 
-    public void Initialize(ShrimpRepository shrimpRepository, PackedScene shrimp, int leftXBound,
-        int rightXBound, int ySpawnPosition, float playerYPosition) {
+    public void Initialize(PackedScene shrimp, int leftXBound, int rightXBound, int ySpawnPosition, float playerYPosition) {
         YSortEnabled = true;
-        _shrimpRepository = shrimpRepository;
         _shrimp = shrimp;
         _leftXBound = leftXBound;
         _rightXBound = rightXBound;
@@ -34,22 +30,27 @@ public partial class CollectibleManager : Node2D {
     }
 
     public void Reset() {
-        _shrimpRepository.RemoveAllShrimps();
+        foreach (Shrimp shrimp in _shrimps.Values) {
+            shrimp.QueueFree();
+        }
+
+        _shrimps.Clear();
         _shrimpSpawnTicksLeft = 0;
     }
-    
+
     public void PhysicsTick(double delta) {
         _SpawnShrimp();
         _MoveShrimp();
     }
 
     public void DestroyShrimp(ulong shrimpId) {
-        _shrimpRepository.RemoveShrimp(shrimpId);
+        Shrimp shrimp = _shrimps[shrimpId];
+        shrimp.QueueFree();
+        _shrimps.Remove(shrimpId);
     }
 
     private void _MoveShrimp() {
-        Dictionary<ulong, Shrimp>.ValueCollection shrimps = _shrimpRepository.GetShrimps();
-        foreach (Shrimp shrimp in shrimps) {
+        foreach (Shrimp shrimp in _shrimps.Values) {
             shrimp.Position = new Vector2(shrimp.Position.X, shrimp.Position.Y + _shrimpMoveSpeed);
             float scale = Math.Min((shrimp.Position.Y - _ySpawnPosition) / _shrimpSpawnDistanceFromPlayer, 1);
             shrimp.Scale = new Vector2(scale, scale);
@@ -69,7 +70,7 @@ public partial class CollectibleManager : Node2D {
         shrimp.YSortEnabled = true;
         shrimp.Initialize(_collectibleId++, _random.Next(_minShrimpAmountInclusive, _maxShrimpAmountExclusive));
         shrimp.Position = new Vector2(_random.Next(_leftXBound, _rightXBound), _ySpawnPosition);
-        _shrimpRepository.AddShrimp(shrimp.GetId(), shrimp);
+        _shrimps[shrimp.GetId()] = shrimp;
         AddChild(shrimp);
     }
 }
