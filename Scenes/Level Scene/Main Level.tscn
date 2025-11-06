@@ -18,6 +18,7 @@ _collectibleOutOfBoundsArea = NodePath("Area2D - out of bounds")
 _playerLeftXBound = 70
 _playerRightXBound = 1200
 _horizontalMoveSpeed = 5.0
+_secondsPerWave = 3
 
 [node name="Player" parent="." instance=ExtResource("2_phujf")]
 position = Vector2(640, 568)
