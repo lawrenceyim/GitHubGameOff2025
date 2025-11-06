@@ -4,9 +4,10 @@ using Godot;
 using RepositorySystem;
 using ServiceSystem;
 
-public partial class CollectibleManager : Node2D, IService {
+public partial class CollectibleManager : Node2D, IService, ITick {
     private readonly Random _random = new();
 
+    private GameClock _gameClock;
     private PackedScene _shrimp;
     private ShrimpRepository _shrimpRepository;
     private float _shrimpSpawnDistanceFromPlayer;
@@ -32,17 +33,21 @@ public partial class CollectibleManager : Node2D, IService {
         _shrimpSpawnDistanceFromPlayer = playerYPosition - _ySpawnPosition;
     }
 
-    public override void _PhysicsProcess(double delta) {
-        base._PhysicsProcess(delta);
-        SpawnShrimp();
-        MoveShrimp();
+    public void Reset() {
+        _shrimpRepository.RemoveAllShrimps();
+        _shrimpSpawnTicksLeft = 0;
+    }
+    
+    public void PhysicsTick(double delta) {
+        _SpawnShrimp();
+        _MoveShrimp();
     }
 
     public void DestroyShrimp(ulong shrimpId) {
         _shrimpRepository.RemoveShrimp(shrimpId);
     }
 
-    private void MoveShrimp() {
+    private void _MoveShrimp() {
         Dictionary<ulong, Shrimp>.ValueCollection shrimps = _shrimpRepository.GetShrimps();
         foreach (Shrimp shrimp in shrimps) {
             shrimp.Position = new Vector2(shrimp.Position.X, shrimp.Position.Y + _shrimpMoveSpeed);
@@ -51,7 +56,7 @@ public partial class CollectibleManager : Node2D, IService {
         }
     }
 
-    private void SpawnShrimp() {
+    private void _SpawnShrimp() {
         _shrimpSpawnTicksLeft--;
 
         if (_shrimpSpawnTicksLeft > 0) {

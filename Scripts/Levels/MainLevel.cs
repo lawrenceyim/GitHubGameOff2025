@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Godot;
+using Godot.NativeInterop;
 using InputSystem;
 using RepositorySystem;
 using ServiceSystem;
 
-public partial class MainLevel : Node2D, IInputState {
+public partial class MainLevel : Node2D, IInputState, ITick {
     [Export]
     private AnimatedSprite2D _player;
 
@@ -25,18 +26,22 @@ public partial class MainLevel : Node2D, IInputState {
 
     [Export]
     private int _playerRightXBound;
-    
+
     [Export]
     private float _horizontalMoveSpeed; // Per physic tick
 
     [Export]
-    private int _secondsPerWave; 
+    private int _secondsPerWave;
+
+    [Export]
+    private GameClock _gameClock;
 
     private int _ticksLeftInWave;
-    
+
     private CollectibleManager _collectibleManager;
     private const string _moveLeft = "A";
     private const string _moveRight = "D";
+    private const string _pause = "Escape";
     private ServiceLocator _serviceLocator;
 
     private Dictionary<string, bool> _keyPressed = new() {
@@ -50,19 +55,29 @@ public partial class MainLevel : Node2D, IInputState {
 
     public void ProcessInput(InputEventDto dto) {
         if (dto is KeyDto keyEventDto) {
+            if (keyEventDto.Identifier == _pause && keyEventDto.Pressed) {
+                GD.Print("Pause pressed");
+                _gameClock.SetPauseState(!_gameClock.IsPaused());
+            }
+
             _keyPressed[keyEventDto.Identifier] = keyEventDto.Pressed;
         }
     }
 
-    public override void _PhysicsProcess(double delta) {
-        base._PhysicsProcess(delta);
+    public override void _ExitTree() {
+        base._ExitTree();
+        _gameClock.RemoveActiveScene(GetInstanceId());
+        _gameClock.RemoveActiveScene(_collectibleManager.GetInstanceId());
+    }
 
+    public void PhysicsTick(double delta) {
         _MovePlayer();
         _TickDownTimer();
     }
 
     private void _InstantiateLevel() {
         _serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
+
         InputStateMachine inputStateMachine = _serviceLocator.GetService<InputStateMachine>(ServiceName.InputStateMachine);
         inputStateMachine?.SetState(this);
 
@@ -74,8 +89,12 @@ public partial class MainLevel : Node2D, IInputState {
         _collectibleManager?.Initialize(shrimpRepository, shrimpPackedScene, _collectibleLeftXBound,
             _collectibleRightXBound, _collectibleYSpawnPosition, _player.Position.Y);
 
+        _gameClock = _serviceLocator.GetService<GameClock>(ServiceName.GameClock);
+        _gameClock.AddActiveScene(this, GetInstanceId());
+        _gameClock.AddActiveScene(_collectibleManager, _collectibleManager.GetInstanceId());
+
         _collectibleOutOfBoundsArea.AreaEntered += _DestroyCollectible;
-        
+
         _ticksLeftInWave = _secondsPerWave * Engine.PhysicsTicksPerSecond;
     }
 

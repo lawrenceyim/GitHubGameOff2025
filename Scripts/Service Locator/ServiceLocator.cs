@@ -30,6 +30,7 @@ public partial class ServiceLocator : Node, IAutoload {
     }
 
     private void _InstantiateServices() {
+        AddService(ServiceName.GameClock, new GameClock(), true);
         AddService(ServiceName.RepositoryLocator, _repositoryLocator, false);
         AddService(ServiceName.InputStateMachine, new InputStateMachine(), true);
         AddService(ServiceName.CollectibleManager, new CollectibleManager(), true);
