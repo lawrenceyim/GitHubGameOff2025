@@ -11,7 +11,7 @@ public partial class RepositoryLocator : Node, IService {
 
     public override void _EnterTree() {
         AddRepository(RepositoryName.PackedScene, GetNode<PackedSceneRepository>(PackedSceneRepository.AutoloadPath));
-        GD.Print($"{_repositories[RepositoryName.PackedScene] == null}");
+        AddRepository(RepositoryName.Scene, GetNode<SceneRepository>(SceneRepository.AutoloadPath));
     }
 
     public void AddRepository(RepositoryName repositoryName, IRepository repository) {

@@ -18,6 +18,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 
 ServiceLocator="*res://Scenes/Autoload/ServiceLocator.tscn"
 PackedSceneRepository="*res://Scenes/Autoload/PackedSceneRepository.tscn"
+SceneRepository="*res://Scenes/Autoload/SceneRepository.tscn"
 
 [display]
 
