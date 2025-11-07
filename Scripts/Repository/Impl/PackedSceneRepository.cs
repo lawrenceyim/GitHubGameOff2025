@@ -3,12 +3,11 @@ using Godot.Collections;
 
 namespace RepositorySystem;
 
-public partial class PackedSceneRepository : Node, IRepository {
-    // Probably not the best way.
-    // Figure out a way to make this an export
-    private Dictionary<PackedSceneId, PackedScene> _packedScenes = new() {
-        {PackedSceneId.Shrimp,  ResourceLoader.Load<PackedScene>("res://Scenes/Game Object/Shrimp.tscn")}
-    };
+public partial class PackedSceneRepository : Node, IAutoload, IRepository {
+    public static string AutoloadPath => "/root/PackedSceneRepository";
+
+    [Export]
+    private Dictionary<PackedSceneId, PackedScene> _packedScenes;
 
     public PackedScene GetPackedScene(PackedSceneId packedSceneId) {
         return _packedScenes[packedSceneId];

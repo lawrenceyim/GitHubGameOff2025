@@ -1,13 +1,18 @@
 using System.Collections.Generic;
+using Godot;
 using ServiceSystem;
 
 namespace RepositorySystem;
 
-public class RepositoryLocator : IService {
+public partial class RepositoryLocator : Node, IService {
     private Dictionary<RepositoryName, IRepository> _repositories = new() {
-        { RepositoryName.PackedScene, new PackedSceneRepository() },
         { RepositoryName.PlayerData, new PlayerDataRepository() }
     };
+
+    public override void _EnterTree() {
+        AddRepository(RepositoryName.PackedScene, GetNode<PackedSceneRepository>(PackedSceneRepository.AutoloadPath));
+        GD.Print($"{_repositories[RepositoryName.PackedScene] == null}");
+    }
 
     public void AddRepository(RepositoryName repositoryName, IRepository repository) {
         _repositories.Add(repositoryName, repository);
