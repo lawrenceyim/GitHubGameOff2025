@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhaek2dw544hi"]
+
+[ext_resource type="Texture2D" uid="uid://v6ruk8ncmsmq" path="res://Assets/Sprites/Fresh_draft.webp" id="1_kaqi4"]
+[ext_resource type="Texture2D" uid="uid://yr4ntxoxb5mh" path="res://Assets/Sprites/Stale_draft.webp" id="2_q1p5l"]
+[ext_resource type="Texture2D" uid="uid://qsstvhset656" path="res://Assets/Sprites/Gross_draft.webp" id="3_lnwrr"]
+[ext_resource type="Texture2D" uid="uid://brp825syxsox5" path="res://Assets/Sprites/Shrimpmonger_draft.webp" id="4_x1o4j"]
+[ext_resource type="Texture2D" uid="uid://bd6kdr2emja8s" path="res://Assets/Sprites/Numbers_draft.webp" id="5_vsr3g"]
+
+[node name="Shrimp Market" type="Node2D"]
+
+[node name="FreshDraft" type="Sprite2D" parent="."]
+position = Vector2(0, 438)
+texture = ExtResource("1_kaqi4")
+centered = false
+
+[node name="StaleDraft" type="Sprite2D" parent="."]
+position = Vector2(429, 438)
+texture = ExtResource("2_q1p5l")
+centered = false
+
+[node name="GrossDraft" type="Sprite2D" parent="."]
+position = Vector2(851, 438)
+texture = ExtResource("3_lnwrr")
+centered = false
+
+[node name="ShrimpmongerDraft" type="Sprite2D" parent="."]
+scale = Vector2(1.316, 1.316)
+texture = ExtResource("4_x1o4j")
+centered = false
+
+[node name="NumbersDraft" type="Sprite2D" parent="."]
+position = Vector2(0, 302)
+scale = Vector2(1.316, 1.58)
+texture = ExtResource("5_vsr3g")
+centered = false
