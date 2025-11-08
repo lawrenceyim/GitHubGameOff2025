@@ -1,27 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhaek2dw544hi"]
+[gd_scene load_steps=8 format=3 uid="uid://dhaek2dw544hi"]
 
 [ext_resource type="Texture2D" uid="uid://v6ruk8ncmsmq" path="res://Assets/Sprites/Fresh_draft.webp" id="1_kaqi4"]
+[ext_resource type="Script" uid="uid://dxrnig0ptlbex" path="res://Scripts/Scenes/Shrimp Market/ShrimpMarket.cs" id="1_q1p5l"]
 [ext_resource type="Texture2D" uid="uid://yr4ntxoxb5mh" path="res://Assets/Sprites/Stale_draft.webp" id="2_q1p5l"]
 [ext_resource type="Texture2D" uid="uid://qsstvhset656" path="res://Assets/Sprites/Gross_draft.webp" id="3_lnwrr"]
 [ext_resource type="Texture2D" uid="uid://brp825syxsox5" path="res://Assets/Sprites/Shrimpmonger_draft.webp" id="4_x1o4j"]
 [ext_resource type="Texture2D" uid="uid://bd6kdr2emja8s" path="res://Assets/Sprites/Numbers_draft.webp" id="5_vsr3g"]
 
-[node name="Shrimp Market" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1p5l"]
+size = Vector2(338, 197)
+
+[node name="Shrimp Market" type="Node2D" node_paths=PackedStringArray("_freshShrimpSprite", "_staleShrimpSprite", "_grossShrimpSprite", "_freshShrimpArea2D", "_staleShrimpArea2D", "_grossShrimpArea2D")]
+script = ExtResource("1_q1p5l")
+_freshShrimpSprite = NodePath("FreshDraft")
+_staleShrimpSprite = NodePath("StaleDraft")
+_grossShrimpSprite = NodePath("GrossDraft")
+_freshShrimpArea2D = NodePath("FreshDraft/Area2D")
+_staleShrimpArea2D = NodePath("StaleDraft/Area2D")
+_grossShrimpArea2D = NodePath("GrossDraft/Area2D")
 
 [node name="FreshDraft" type="Sprite2D" parent="."]
 position = Vector2(0, 438)
 texture = ExtResource("1_kaqi4")
 centered = false
 
+[node name="Area2D" type="Area2D" parent="FreshDraft"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FreshDraft/Area2D"]
+position = Vector2(205, 182.5)
+shape = SubResource("RectangleShape2D_q1p5l")
+
 [node name="StaleDraft" type="Sprite2D" parent="."]
 position = Vector2(429, 438)
+scale = Vector2(1.0047393, 1)
 texture = ExtResource("2_q1p5l")
 centered = false
+
+[node name="Area2D" type="Area2D" parent="StaleDraft"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaleDraft/Area2D"]
+position = Vector2(211, 182.5)
+shape = SubResource("RectangleShape2D_q1p5l")
 
 [node name="GrossDraft" type="Sprite2D" parent="."]
 position = Vector2(851, 438)
 texture = ExtResource("3_lnwrr")
 centered = false
+
+[node name="Area2D" type="Area2D" parent="GrossDraft"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrossDraft/Area2D"]
+position = Vector2(220, 182.5)
+shape = SubResource("RectangleShape2D_q1p5l")
 
 [node name="ShrimpmongerDraft" type="Sprite2D" parent="."]
 scale = Vector2(1.316, 1.316)
