@@ -1,11 +1,115 @@
-[gd_scene load_steps=5 format=3 uid="uid://yry8cxffkri4"]
+[gd_scene load_steps=30 format=3 uid="uid://yry8cxffkri4"]
 
 [ext_resource type="Script" uid="uid://q8ed1kloyuuj" path="res://Scripts/Scenes/Game Level/MainLevel.cs" id="1_jurmy"]
 [ext_resource type="PackedScene" uid="uid://bvgioog4twdwd" path="res://Scenes/Game Object/Player.tscn" id="2_phujf"]
-[ext_resource type="Texture2D" uid="uid://7t8uygcr3lmy" path="res://Assets/Sprites/placeholder_background.webp" id="3_jurmy"]
+[ext_resource type="Texture2D" uid="uid://by3fptj3dlcmm" path="res://Assets/Sprites/beach/beach/beach_draft_0000.png" id="4_whm1v"]
+[ext_resource type="Texture2D" uid="uid://c7ol05munru6t" path="res://Assets/Sprites/beach/beach/beach_draft_0001.png" id="5_r61wh"]
+[ext_resource type="Texture2D" uid="uid://cvak43cyewomx" path="res://Assets/Sprites/beach/beach/beach_draft_0002.png" id="6_gqcoi"]
+[ext_resource type="Texture2D" uid="uid://dmx7kbyin5mh1" path="res://Assets/Sprites/beach/beach/beach_draft_0003.png" id="7_rs2b1"]
+[ext_resource type="Texture2D" uid="uid://bxtugwkm1bhc6" path="res://Assets/Sprites/beach/beach/beach_draft_0004.png" id="8_1dki6"]
+[ext_resource type="Texture2D" uid="uid://cwef0ko5raphw" path="res://Assets/Sprites/beach/beach/beach_draft_0005.png" id="9_hedit"]
+[ext_resource type="Texture2D" uid="uid://dwvf0btbrenvn" path="res://Assets/Sprites/beach/beach/beach_draft_0006.png" id="10_scxht"]
+[ext_resource type="Texture2D" uid="uid://bvh31jo32mef0" path="res://Assets/Sprites/beach/beach/beach_draft_0007.png" id="11_xfoye"]
+[ext_resource type="Texture2D" uid="uid://djxxuk15rq3hp" path="res://Assets/Sprites/beach/beach/beach_draft_0008.png" id="12_unrsx"]
+[ext_resource type="Texture2D" uid="uid://b1wi4r1dgahuv" path="res://Assets/Sprites/beach/beach/beach_draft_0009.png" id="13_i44pr"]
+[ext_resource type="Texture2D" uid="uid://ci5m10pywr6sn" path="res://Assets/Sprites/beach/beach/beach_draft_0010.png" id="14_1rll4"]
+[ext_resource type="Texture2D" uid="uid://cr6o553kj18vt" path="res://Assets/Sprites/beach/beach/beach_draft_0011.png" id="15_a6whv"]
+[ext_resource type="Texture2D" uid="uid://dmr4oyigij4wo" path="res://Assets/Sprites/beach/beach/beach_draft_0012.png" id="16_85xcg"]
+[ext_resource type="Texture2D" uid="uid://b1axed0dtssju" path="res://Assets/Sprites/beach/beach/beach_draft_0013.png" id="17_2c2sg"]
+[ext_resource type="Texture2D" uid="uid://bxowatolclfqa" path="res://Assets/Sprites/beach/beach/beach_draft_0014.png" id="18_pqfnj"]
+[ext_resource type="Texture2D" uid="uid://cdgvbf3bxa72h" path="res://Assets/Sprites/beach/beach/beach_draft_0015.png" id="19_i4k02"]
+[ext_resource type="Texture2D" uid="uid://cnt463dad4rt7" path="res://Assets/Sprites/beach/beach/beach_draft_0016.png" id="20_qdwvs"]
+[ext_resource type="Texture2D" uid="uid://doe520rbn7ycn" path="res://Assets/Sprites/beach/beach/beach_draft_0017.png" id="21_e4c8j"]
+[ext_resource type="Texture2D" uid="uid://176pi3sjdmru" path="res://Assets/Sprites/beach/beach/beach_draft_0018.png" id="22_2mbo3"]
+[ext_resource type="Texture2D" uid="uid://dclu0qjbjs2lc" path="res://Assets/Sprites/beach/beach/beach_draft_0019.png" id="23_gyyyn"]
+[ext_resource type="Texture2D" uid="uid://x8t0x2swn2kj" path="res://Assets/Sprites/beach/beach/beach_draft_0020.png" id="24_mpq2w"]
+[ext_resource type="Texture2D" uid="uid://de61pi6ml7nok" path="res://Assets/Sprites/beach/beach/beach_draft_0021.png" id="25_t0m5x"]
+[ext_resource type="Texture2D" uid="uid://mputxdwy216d" path="res://Assets/Sprites/beach/beach/beach_draft_0022.png" id="26_iycij"]
+[ext_resource type="Texture2D" uid="uid://wiada5bx0tl8" path="res://Assets/Sprites/beach/beach/beach_draft_0023.png" id="27_fms81"]
+[ext_resource type="Script" uid="uid://vfipivia7k02" path="res://Scripts/Scenes/Game Level/BeachAnimation.cs" id="27_whm1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phujf"]
 size = Vector2(1332, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dujx3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_whm1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r61wh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gqcoi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rs2b1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1dki6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hedit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_scxht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xfoye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_unrsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_i44pr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1rll4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_a6whv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_85xcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2c2sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pqfnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_i4k02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_qdwvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_e4c8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_2mbo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_gyyyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_mpq2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_t0m5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_iycij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_fms81")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main Level" type="Node2D" node_paths=PackedStringArray("_player", "_playerHitBox", "_collectibleOutOfBoundsArea")]
 y_sort_enabled = true
@@ -33,10 +137,11 @@ position = Vector2(640, 360)
 position = Vector2(647, 811)
 shape = SubResource("RectangleShape2D_phujf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -10
-position = Vector2(640.00006, 360)
-scale = Vector2(1.1101476, 1.1093991)
-texture = ExtResource("3_jurmy")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(638, 359)
+scale = Vector2(3.93, 3.93)
+sprite_frames = SubResource("SpriteFrames_dujx3")
+frame_progress = 0.8779575
+script = ExtResource("27_whm1v")
 
 [editable path="Player"]
