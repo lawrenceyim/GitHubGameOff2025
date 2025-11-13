@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drgwgsoav4van"
-path="res://.godot/imported/placeholder_horse.webp-ad325d80f9e58f888d6e24297dda174f.ctex"
+uid="uid://cwn03vep6knaj"
+path="res://.godot/imported/Computer_bg.webp-e7badbdf633a9b05bf3b5fcd4e9d0948.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/placeholder_horse.webp"
-dest_files=["res://.godot/imported/placeholder_horse.webp-ad325d80f9e58f888d6e24297dda174f.ctex"]
+source_file="res://Assets/Sprites/placeholders/Computer_bg.webp"
+dest_files=["res://.godot/imported/Computer_bg.webp-e7badbdf633a9b05bf3b5fcd4e9d0948.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkivshgpmfqtv"]
 
 [ext_resource type="Script" uid="uid://p471bh314q61" path="res://Scripts/Collectibles/Shrimp.cs" id="1_ov8t7"]
-[ext_resource type="Texture2D" uid="uid://vyn827pk5nom" path="res://Assets/Sprites/placeholder_shrimp.webp" id="2_ov8t7"]
+[ext_resource type="Texture2D" uid="uid://vyn827pk5nom" path="res://Assets/Sprites/placeholders/placeholder_shrimp.webp" id="2_ov8t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ov8t7"]
 size = Vector2(190, 57)

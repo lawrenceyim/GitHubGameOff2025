@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brp825syxsox5"
-path="res://.godot/imported/Shrimpmonger_draft.webp-6d183091d22a2443b4cbf42772af2a12.ctex"
+uid="uid://yr4ntxoxb5mh"
+path="res://.godot/imported/Stale_draft.webp-6a5c24bc0e567e8215e3e8147f257332.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Shrimpmonger_draft.webp"
-dest_files=["res://.godot/imported/Shrimpmonger_draft.webp-6d183091d22a2443b4cbf42772af2a12.ctex"]
+source_file="res://Assets/Sprites/placeholders/Stale_draft.webp"
+dest_files=["res://.godot/imported/Stale_draft.webp-6a5c24bc0e567e8215e3e8147f257332.ctex"]
 
 [params]
 

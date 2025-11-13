@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd6kdr2emja8s"
-path="res://.godot/imported/Numbers_draft.webp-3d30ef7e0324868f922326bb8f49f110.ctex"
+uid="uid://7t8uygcr3lmy"
+path="res://.godot/imported/placeholder_background.webp-a59b2d97b561bc97839312b3384adab5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Numbers_draft.webp"
-dest_files=["res://.godot/imported/Numbers_draft.webp-3d30ef7e0324868f922326bb8f49f110.ctex"]
+source_file="res://Assets/Sprites/placeholders/placeholder_background.webp"
+dest_files=["res://.godot/imported/placeholder_background.webp-a59b2d97b561bc97839312b3384adab5.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yr4ntxoxb5mh"
-path="res://.godot/imported/Stale_draft.webp-1d896f99abf0094746f801574423cd80.ctex"
+uid="uid://drgwgsoav4van"
+path="res://.godot/imported/placeholder_horse.webp-293d377300eac46c83767e6065fc523f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Stale_draft.webp"
-dest_files=["res://.godot/imported/Stale_draft.webp-1d896f99abf0094746f801574423cd80.ctex"]
+source_file="res://Assets/Sprites/placeholders/placeholder_horse.webp"
+dest_files=["res://.godot/imported/placeholder_horse.webp-293d377300eac46c83767e6065fc523f.ctex"]
 
 [params]
 
