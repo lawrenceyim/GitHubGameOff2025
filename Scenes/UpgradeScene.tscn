@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cry2wxhwb48id"]
+
+[ext_resource type="Texture2D" uid="uid://cwn03vep6knaj" path="res://Assets/Sprites/placeholders/Computer_bg.webp" id="1_b2k65"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ComputerBg" type="Sprite2D" parent="."]
+texture = ExtResource("1_b2k65")
+
+[node name="Camera2D" type="Camera2D" parent="."]

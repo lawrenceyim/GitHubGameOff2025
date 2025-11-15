@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhaek2dw544hi"]
+[gd_scene load_steps=9 format=3 uid="uid://dhaek2dw544hi"]
 
 [ext_resource type="Texture2D" uid="uid://v6ruk8ncmsmq" path="res://Assets/Sprites/placeholders/Fresh_draft.webp" id="1_kaqi4"]
 [ext_resource type="Script" uid="uid://dxrnig0ptlbex" path="res://Scripts/Scenes/Shrimp Market/ShrimpMarket.cs" id="1_q1p5l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qsstvhset656" path="res://Assets/Sprites/placeholders/Gross_draft.webp" id="3_lnwrr"]
 [ext_resource type="Texture2D" uid="uid://brp825syxsox5" path="res://Assets/Sprites/placeholders/Shrimpmonger_draft.webp" id="4_x1o4j"]
 [ext_resource type="Texture2D" uid="uid://bd6kdr2emja8s" path="res://Assets/Sprites/placeholders/Numbers_draft.webp" id="5_vsr3g"]
+[ext_resource type="Texture2D" uid="uid://td0fbfgbusyb" path="res://Assets/Sprites/shrimpmonger.png" id="7_lnwrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1p5l"]
 size = Vector2(338, 197)
@@ -62,4 +63,10 @@ centered = false
 position = Vector2(0, 302)
 scale = Vector2(1.316, 1.58)
 texture = ExtResource("5_vsr3g")
+centered = false
+
+[node name="Shrimpmonger" type="Sprite2D" parent="."]
+position = Vector2(0, 43)
+scale = Vector2(0.903, 0.903)
+texture = ExtResource("7_lnwrr")
 centered = false
