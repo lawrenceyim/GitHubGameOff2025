@@ -18,11 +18,10 @@ namespace InputSystem {
                         key.Pressed
                     ));
                     break;
-                case InputEventMouseButton mouseButton:
+                case InputEventMouseButton mouseButtonPressed:
                     // GD.Print($"InputController MouseButton");
-                    InputFromPlayer?.Invoke(new MouseButtonDto(
-                        mouseButton.ButtonIndex.ToString(),
-                        mouseButton.Pressed,
+                    InputFromPlayer?.Invoke(new MouseButtonPressedDto(
+                        mouseButtonPressed.ButtonIndex.ToString(),
                         GetWindow().GetMousePosition()
                     ));
                     break;

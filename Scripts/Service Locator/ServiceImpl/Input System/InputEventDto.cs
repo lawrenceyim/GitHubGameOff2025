@@ -23,14 +23,22 @@ namespace InputSystem {
         }
     }
 
-    public class MouseButtonDto : InputEventDto {
+    public class MouseButtonPressedDto : InputEventDto {
         public readonly string Identifier;
-        public readonly bool Pressed;
         public readonly Vector2 Position;
 
-        public MouseButtonDto(string identifier, bool pressed, Vector2 position) {
+        public MouseButtonPressedDto(string identifier, Vector2 position) {
             Identifier = identifier;
-            Pressed = pressed;
+            Position = position;
+        }
+    }
+
+    public class MouseButtonReleasedDto : InputEventDto {
+        public readonly string Identifier;
+        public readonly Vector2 Position;
+
+        public MouseButtonReleasedDto(string identifier, Vector2 position) {
+            Identifier = identifier;
             Position = position;
         }
     }
