@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhaek2dw544hi"]
+[gd_scene load_steps=9 format=3 uid="uid://dhaek2dw544hi"]
 
 [ext_resource type="Texture2D" uid="uid://v6ruk8ncmsmq" path="res://Assets/Sprites/placeholders/Fresh_draft.webp" id="1_kaqi4"]
 [ext_resource type="Script" uid="uid://dxrnig0ptlbex" path="res://Scripts/Scenes/Shrimp Market/ShrimpMarket.cs" id="1_q1p5l"]
@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bd6kdr2emja8s" path="res://Assets/Sprites/placeholders/Numbers_draft.webp" id="5_vsr3g"]
 [ext_resource type="Texture2D" uid="uid://td0fbfgbusyb" path="res://Assets/Sprites/shrimpmonger.png" id="7_lnwrr"]
 
-[node name="Shrimp Market" type="Node2D" node_paths=PackedStringArray("_freshShrimpSprite", "_staleShrimpSprite", "_grossShrimpSprite", "_freshShrimpButton", "_staleShrimpButton", "_grossShrimpButton")]
+[sub_resource type="LabelSettings" id="LabelSettings_lnwrr"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Shrimp Market" type="Node2D" node_paths=PackedStringArray("_freshShrimpSprite", "_staleShrimpSprite", "_grossShrimpSprite", "_freshShrimpButton", "_staleShrimpButton", "_grossShrimpButton", "_priceLabel")]
 script = ExtResource("1_q1p5l")
 _freshShrimpSprite = NodePath("FreshDraft")
 _staleShrimpSprite = NodePath("StaleDraft")
@@ -16,6 +19,7 @@ _grossShrimpSprite = NodePath("GrossDraft")
 _freshShrimpButton = NodePath("FreshDraft/Button")
 _staleShrimpButton = NodePath("StaleDraft/Button")
 _grossShrimpButton = NodePath("GrossDraft/Button")
+_priceLabel = NodePath("Price Label")
 
 [node name="FreshDraft" type="Sprite2D" parent="."]
 position = Vector2(0, 438)
@@ -59,14 +63,25 @@ scale = Vector2(1.316, 1.316)
 texture = ExtResource("4_x1o4j")
 centered = false
 
+[node name="Shrimpmonger" type="Sprite2D" parent="."]
+position = Vector2(0, 43)
+scale = Vector2(0.903, 0.903)
+texture = ExtResource("7_lnwrr")
+centered = false
+
 [node name="NumbersDraft" type="Sprite2D" parent="."]
 position = Vector2(0, 302)
 scale = Vector2(1.316, 1.58)
 texture = ExtResource("5_vsr3g")
 centered = false
 
-[node name="Shrimpmonger" type="Sprite2D" parent="."]
-position = Vector2(0, 43)
-scale = Vector2(0.903, 0.903)
-texture = ExtResource("7_lnwrr")
-centered = false
+[node name="Price Label" type="Label" parent="."]
+offset_left = 467.0
+offset_top = 61.0
+offset_right = 619.0
+offset_bottom = 157.0
+text = "Today's Price:
+5"
+label_settings = SubResource("LabelSettings_lnwrr")
+horizontal_alignment = 1
+vertical_alignment = 1

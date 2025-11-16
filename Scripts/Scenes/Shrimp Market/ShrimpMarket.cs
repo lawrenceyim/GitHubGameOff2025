@@ -22,6 +22,9 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
     [Export]
     private Button _grossShrimpButton;
 
+    [Export]
+    private Label _priceLabel;
+
     private Color _highlightColor = new Color(1, 1, 0, 1);
     private Color _regularColor = new Color(1, 1, 1, 1);
     private InputStateMachine _inputStateMachine;
@@ -33,6 +36,7 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
         _inputStateMachine.SetState(this);
 
         _shrimpPrice = _GetShrimpPrice();
+        _priceLabel.Text = $"Today's Price\n{_shrimpPrice}";
 
         _freshShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Fresh, true);
         _freshShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Fresh, false);
