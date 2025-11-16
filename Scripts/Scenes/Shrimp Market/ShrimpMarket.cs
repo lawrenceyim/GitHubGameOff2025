@@ -28,12 +28,14 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
     private Color _highlightColor = new Color(1, 1, 0, 1);
     private Color _regularColor = new Color(1, 1, 1, 1);
     private InputStateMachine _inputStateMachine;
+    private PlayerDataService _playerDataService;
     private int _shrimpPrice;
 
     public override void _Ready() {
         _InitializeDependencies();
         _InitializeSignals();
-
+        
+        _UpdateShrimpUi();
         _inputStateMachine.SetState(this);
         _shrimpPrice = _GetShrimpPrice();
         _priceLabel.Text = $"Today's Price\n{_shrimpPrice}";
@@ -61,10 +63,11 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
             ShrimpType.Stale => 1,
             _ => .5
         };
-
-        int profit = (int)(_shrimpPrice * modifier);
-        // Empty shrimp
-        // Add profit to player money
+        int shrimpAmount = _playerDataService.GetShrimpAmount(type);
+        int profit = (int)(_shrimpPrice * modifier * shrimpAmount);
+        _playerDataService.SetShrimpAmount(type, 0);
+        _playerDataService.SetMoney(profit + _playerDataService.GetMoney());
+        _UpdateShrimpUi();
     }
 
     private void _Highlight(Sprite2D sprite, bool highlight) {
@@ -95,6 +98,7 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
     private void _InitializeDependencies() {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
         _inputStateMachine = serviceLocator.GetService<InputStateMachine>(ServiceName.InputStateMachine);
+        _playerDataService = serviceLocator.GetService<PlayerDataService>(ServiceName.PlayerData);
     }
 
     private void _InitializeSignals() {
@@ -109,5 +113,9 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
         _grossShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Gross, true);
         _grossShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Gross, false);
         _grossShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Gross);
+    }
+
+    private void _UpdateShrimpUi() {
+        // TODO: set the sprite of each basket and display their amount on the scale label
     }
 }

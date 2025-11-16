@@ -130,9 +130,9 @@ public partial class MainLevel : Node2D, IInputState, ITick {
 
 	private void _HandlePlayerCollision(Area2D area) {
 		if (area.GetParent() is Shrimp shrimp) {
-			_playerDataService.AddShrimp(ShrimpType.Fresh, shrimp.GetAmount());
+			_playerDataService.AddShrimpAmount(ShrimpType.Fresh, shrimp.GetAmount());
 			_collectibleManager.DestroyShrimp(shrimp.GetId());
-			GD.Print($"Caught {shrimp.GetAmount()}. Fresh shrimp count: {_playerDataService.GetShrimp(ShrimpType.Fresh)}");
+			GD.Print($"Caught {shrimp.GetAmount()}. Fresh shrimp count: {_playerDataService.GetShrimpAmount(ShrimpType.Fresh)}");
 		}
 	}
 }
