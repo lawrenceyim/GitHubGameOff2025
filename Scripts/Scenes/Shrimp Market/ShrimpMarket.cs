@@ -31,24 +31,12 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
     private int _shrimpPrice;
 
     public override void _Ready() {
-        ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
-        _inputStateMachine = serviceLocator.GetService<InputStateMachine>(ServiceName.InputStateMachine);
-        _inputStateMachine.SetState(this);
+        _InitializeDependencies();
+        _InitializeSignals();
 
+        _inputStateMachine.SetState(this);
         _shrimpPrice = _GetShrimpPrice();
         _priceLabel.Text = $"Today's Price\n{_shrimpPrice}";
-
-        _freshShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Fresh, true);
-        _freshShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Fresh, false);
-        _freshShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Fresh);
-
-        _staleShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Stale, true);
-        _staleShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Stale, false);
-        _staleShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Stale);
-
-        _grossShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Gross, true);
-        _grossShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Gross, false);
-        _grossShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Gross);
     }
 
     public override void _ExitTree() {
@@ -102,5 +90,24 @@ public partial class ShrimpMarket : Node2D, ITick, IInputState {
         int minPrice = 10;
         int maxPrice = 100;
         return random.Next(minPrice, maxPrice + 1);
+    }
+
+    private void _InitializeDependencies() {
+        ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
+        _inputStateMachine = serviceLocator.GetService<InputStateMachine>(ServiceName.InputStateMachine);
+    }
+
+    private void _InitializeSignals() {
+        _freshShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Fresh, true);
+        _freshShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Fresh, false);
+        _freshShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Fresh);
+
+        _staleShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Stale, true);
+        _staleShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Stale, false);
+        _staleShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Stale);
+
+        _grossShrimpButton.MouseEntered += () => _HighlightObject(ShrimpType.Gross, true);
+        _grossShrimpButton.MouseExited += () => _HighlightObject(ShrimpType.Gross, false);
+        _grossShrimpButton.Pressed += () => _SellShrimp(ShrimpType.Gross);
     }
 }
