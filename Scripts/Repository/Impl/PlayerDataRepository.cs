@@ -14,7 +14,7 @@ public class PlayerDataRepository : IRepository {
             case ShrimpType.Stale:
                 _staleShrimps += amount;
                 break;
-            case ShrimpType.Expiring:
+            case ShrimpType.Gross:
                 _expiringShrimps += amount;
                 break;
         }
@@ -28,7 +28,7 @@ public class PlayerDataRepository : IRepository {
             case ShrimpType.Stale:
                 _staleShrimps -= amount;
                 break;
-            case ShrimpType.Expiring:
+            case ShrimpType.Gross:
                 _expiringShrimps -= amount;
                 break;
         }
@@ -38,7 +38,7 @@ public class PlayerDataRepository : IRepository {
         return shrimpType switch {
             ShrimpType.Fresh => _freshShrimps,
             ShrimpType.Stale => _staleShrimps,
-            ShrimpType.Expiring => _expiringShrimps,
+            ShrimpType.Gross => _expiringShrimps,
         };
     }
 
